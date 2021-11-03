@@ -24,7 +24,7 @@ public class MapMaker : MonoBehaviour
     public int mapHeight = 10;
 
     [Range(1.0f, 7.0f)]
-    public float cellSize = 1.0f;
+    public float cellScale = 1.0f;
 
     private void Awake()
     {
@@ -41,8 +41,9 @@ public class MapMaker : MonoBehaviour
             rooms[r] = new MazeRoom[mapWidth];
             for (int c = 0; c < rooms[r].Length; c++)
             {
+                roomPrefab.transform.localScale = new Vector3(cellScale, cellScale, cellScale);
                 GameObject newRoom = Instantiate(roomPrefab);
-                rooms[r][c] = new MazeRoom(new Vector2(gridStart.x + (c * cellSize), gridStart.y + (r * cellSize)), newRoom);
+                rooms[r][c] = new MazeRoom(new Vector2(gridStart.x + (c * cellScale), gridStart.y + (r * cellScale)), newRoom);
             }
         }
 

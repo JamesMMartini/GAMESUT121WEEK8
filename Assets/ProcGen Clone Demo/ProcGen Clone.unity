@@ -254,7 +254,7 @@ MonoBehaviour:
   animatedPath: 0
   gridStart: {x: -8.5, y: -4.5}
   roomPrefab: {fileID: 6966765450375653110, guid: 87ba5c78ed4dd204586a5268365cd49d, type: 3}
-  roomCount: 30
-  mapWidth: 10
+  roomCount: 10
+  mapWidth: 30
   mapHeight: 10
-  cellSize: 1
+  cellScale: 5
