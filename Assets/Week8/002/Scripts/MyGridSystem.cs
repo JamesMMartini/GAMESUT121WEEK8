@@ -61,18 +61,3 @@ public class MyGridSystem : MonoBehaviour {
 
 
 }
-
-[System.Serializable]
-public class GridCell {
-
-    public Vector2 location;
-
-    public GridCell() { }
-    public GridCell(Vector2 l) {
-        location = new Vector2(l.x, l.y);
-    }
-    public GridCell(float x, float y) {
-        location = new Vector2(x, y);
-    }
-
-}
