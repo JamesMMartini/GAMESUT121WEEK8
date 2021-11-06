@@ -81,28 +81,30 @@ public class MapMaker : MonoBehaviour
             }
         }
         
+        // Now that we have the maze we need to add the doors between the rooms
+        for (int r = 0; r < rooms.Length; r++)
+        {
+            for (int c = 0; c < rooms[r].Length; c++)
+            {
+                if (rooms[r][c].active)
+                {
+                    List<Direction> adjacentRooms = new List<Direction>();
+                    if (r > 0 && rooms[r - 1][c].active)
+                        adjacentRooms.Add(Direction.DOWN);
+                    if (r < rooms.Length - 1 && rooms[r + 1][c].active)
+                        adjacentRooms.Add(Direction.UP);
+                    if (c > 0 && rooms[r][c - 1].active)
+                        adjacentRooms.Add(Direction.LEFT);
+                    if (c < rooms[r].Length - 1 && rooms[r][c + 1].active)
+                        adjacentRooms.Add(Direction.RIGHT);
 
-
-        //Vector2 currentPosition = new Vector2(-15.0f, -9.0f);
-
-        //// Create the starting room
-        //gridCellList.Add(new GridCell(currentPosition));
-
-        //// Create the rest of the rooms, based on the path length and cell size
-        //for (int i = 0; i < pathLength; i++)
-        //{
-        //    int n = random.Next(100);
-
-        //    if (n > 0 && n < 49)
-        //        currentPosition = new Vector2(currentPosition.x + cellSize, currentPosition.y);
-        //    else
-        //        currentPosition = new Vector2(currentPosition.x, currentPosition.y + cellSize);
-
-        //    gridCellList.Add(new GridCell(currentPosition));
-
-        //}
-
-        //// Now that we have made the maze, we need 
+                    foreach (Direction dir in adjacentRooms)
+                    {
+                        rooms[r][c].room.GetComponent<RoomManager>().AddDoor(dir);
+                    }
+                }
+            }
+        }
     }
 
     private void Update()
@@ -171,6 +173,8 @@ public class MazeRoom
         location = new Vector2(l.x, l.y);
         room = prefab;
         active = false;
+
+        room.GetComponent<RoomManager>().SetColor();
 
         room.transform.position = location;
         room.SetActive(false);
