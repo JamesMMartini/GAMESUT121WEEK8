@@ -467,7 +467,7 @@ Transform:
   m_GameObject: {fileID: 6966765450375653110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children:
   - {fileID: 1413137902925066391}
   - {fileID: 1672485680374566302}
@@ -540,6 +540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091bf1ec5927e9642b5c1ab2025d5fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 2416205102220385172, guid: de8ca61dfa0ea2d45955e2edb19bdfa0, type: 3}
+  door: {fileID: 692134804368477553, guid: 3277241c68b5f74489b2d7e63ee1af4d, type: 3}
   room: {fileID: 6966765450375653110}
   sprite: {fileID: 6966765450375653111}

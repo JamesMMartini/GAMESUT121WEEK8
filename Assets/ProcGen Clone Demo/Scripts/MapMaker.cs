@@ -9,6 +9,8 @@ public class MapMaker : MonoBehaviour
     public enum Direction { UP, DOWN, LEFT, RIGHT }
     [Header("Random Data")]
     public SeedType seedType = SeedType.RANDOM;
+    public GameObject player;
+    public GameObject coin;
 
     System.Random random;
     public int seed = 0;
@@ -46,6 +48,9 @@ public class MapMaker : MonoBehaviour
                 rooms[r][c] = new MazeRoom(new Vector2(gridStart.x + (c * cellScale), gridStart.y + (r * cellScale)), newRoom);
             }
         }
+
+        // Drop the player in the center of the first room
+        player.transform.position = rooms[0][0].room.transform.position;
 
         // Now that the maze is filled with game objects to represent the rooms,
         // we need to decide which rooms to set as active
@@ -88,6 +93,14 @@ public class MapMaker : MonoBehaviour
             {
                 if (rooms[r][c].active)
                 {
+                    // Let's also add a coin if we want to
+                    double randD = random.NextDouble();
+                    if (randD >= 0.75)
+                    {
+                        GameObject newCoin = Instantiate(coin);
+                        coin.transform.position = rooms[r][c].room.transform.position;
+                    }
+
                     List<Direction> adjacentRooms = new List<Direction>();
                     if (r > 0 && rooms[r - 1][c].active)
                         adjacentRooms.Add(Direction.DOWN);
@@ -100,6 +113,7 @@ public class MapMaker : MonoBehaviour
 
                     foreach (Direction dir in adjacentRooms)
                     {
+                        rooms[r][c].room.GetComponent<RoomManager>().ScaleDoor(cellScale);
                         rooms[r][c].room.GetComponent<RoomManager>().AddDoor(dir);
                     }
                 }

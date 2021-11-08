@@ -18,10 +18,14 @@ public class RoomManager : MonoBehaviour
         rand = new System.Random();
     }
 
+    public void ScaleDoor(float scale)
+    {
+        door.transform.localScale = new Vector3(scale, scale, scale);
+    }
+
     public void SetColor()
     {
         int value = rand.Next(150, 226);
-        Debug.Log(value);
         sprite.color = new Color(value, value, value, 255);
     }
 
